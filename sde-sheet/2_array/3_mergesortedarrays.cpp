@@ -8,7 +8,7 @@
    - merge
    - sort
 
-   <-- Better Time --> O(n+n) O(n+m)
+   <-- Better Time --> O(n+m) O(n+m)
    - merge
 
    <-- Better space --> O(n*m) O(1)
