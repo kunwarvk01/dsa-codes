@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> stockspan(vector<int> prices)
-{
+vector<int> stockspan(vector<int> prices){
 	vector<int> ans;
 	stack<pair<int,int> > s;
 	for(auto price: prices)
 	{
 		int days=1;
-		while(!s.empty() and s.top().first<=price)
-		{
+		while(!s.empty() and s.top().first<=price) {
 			days=days+s.top().second;
 			s.pop();
 		}
