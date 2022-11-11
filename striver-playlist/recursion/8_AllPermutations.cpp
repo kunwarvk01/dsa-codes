@@ -33,6 +33,7 @@ void recurPermutee(int index, vector<int> &nums, vector<vector<int> > &ans){
 	}
 }
 
+//helper function
 vector<vector<int> > permute(vector<int> &nums){
 	vector<vector<int> > ans;
 	vector<int> ds;
