@@ -15,7 +15,7 @@ void func(int index,string s,vector<string>& path,vector<vector<string> > &ans){
 		return;
 	}
 	for(int i=index; i<s.size(); i++) {
-		if(isPalindrome(string,index,i)) {
+		if(isPalindrome(s,index,i)) {
 			path.push_back(s.substr(index,i-index+1));
 			func(i+1,s,path,ans);
 			path.pop_back();
