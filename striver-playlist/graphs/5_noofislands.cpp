@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//(n^2) space- n^2 + n^2
+// (n^2)
+// space- n^2 + n^2
 
 void bfs(int row,int col,vector<vector<char> > grid, vector<vector<int> >&vis){
 	int n=grid.size();

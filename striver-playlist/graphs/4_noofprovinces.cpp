@@ -2,6 +2,7 @@
 using namespace std;
 
 //(n)+(v+2e)
+// (n)+(n) space
 void dfs(int node, vector<int> list[], int vis[]){
 	vis[node] = 1;
 	for(auto it:list[node]) {
@@ -21,6 +22,7 @@ int numProvince(vector<vector<int> > adj, int V){
 			}
 		}
 	}
+
 	int vis[V]={0};
 	int count=0;
 	for(int i = 0; i < V; i++) {
