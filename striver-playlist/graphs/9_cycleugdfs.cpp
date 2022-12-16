@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool dfs(int node, int parent, vector<int> vis[],vector<int> adj[]){
+bool dfs(int node, int parent, int vis[],vector<int> adj[]){
 	vis[node]=1;
 	for(auto adjacentNode: adj[node]) {
 		if(!vis[adjacentNode]) {
