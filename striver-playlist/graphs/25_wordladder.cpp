@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//wordlength*N*26
+
 int wordLadder(string startWord,string targetWord, vector<string>&wordList){
 	queue<pair<string,int> > q;
 	q.push({startWord,1});
