@@ -2,7 +2,7 @@
 using namespace std;
 
 // overlapping subproblems
-// memoizarion = storing values
+// memoization = storing values
 
 // T(n) S(n+n)
 int f1(int n, vector<int> &dp) {
