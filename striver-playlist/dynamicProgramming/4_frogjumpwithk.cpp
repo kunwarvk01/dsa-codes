@@ -51,6 +51,10 @@ int f3(int n, vector<int> &height, vector<int> &dp, int k){
 	}
 	return dp[n-1];
 }
+int solver(int n, vector<int> &height, int k){
+	vector<int> dp(n,-1);
+	return f2(n, height, dp, k);
+}
 
 
 int main() {
@@ -59,5 +63,5 @@ int main() {
 	int k=2;
 	vector<int> dp(n,-1);
 	cout<<solve(n,height,k);
-	cout<<f3(n, height, dp, k);
+	cout<<solver(n,height,k);
 }
