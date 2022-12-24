@@ -29,7 +29,6 @@ int f2(int n, vector<int> &height, vector<int> &dp, int k){
 	}
 	return dp[n] = minSteps;
 }
-
 int solve(int n, vector<int> &height, int k){
 	vector<int> dp(n,-1);
 	return f2(n-1, height, dp, k);
@@ -53,11 +52,6 @@ int f3(int n, vector<int> &height, vector<int> &dp, int k){
 	return dp[n-1];
 }
 
-int solver(int n, vector<int> &height, int k){
-	vector<int> dp(n,-1);
-	return f3(n, height, dp, k);
-}
-
 
 int main() {
 	vector<int> height{30,10,60, 10, 60, 50};
@@ -65,5 +59,5 @@ int main() {
 	int k=2;
 	vector<int> dp(n,-1);
 	cout<<solve(n,height,k);
-	cout<<solver(n,height,k);
+	cout<<f3(n, height, dp, k);
 }
