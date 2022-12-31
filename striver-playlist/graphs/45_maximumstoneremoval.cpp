@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// ans= n - no of components
+// ans = n - no of components
 
 class DisjointSet {
 public:
