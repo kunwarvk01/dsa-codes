@@ -63,7 +63,7 @@ int f4(vector<vector<int> > &triangle, int n){
 
 			cur[j] = min(down, diag);
 		}
-		front=cur;
+		front = cur;
 	}
 	return front[0];
 }
