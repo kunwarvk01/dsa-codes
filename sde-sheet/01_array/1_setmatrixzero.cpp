@@ -15,7 +15,7 @@
    <-- Better Approach -->  O(2(n*m))  O(n)
    Instead of traversing through each row and column, we can use dummy arrays
    to check if the particular row or column has an element 0 or not.
-   - Take two dummy arra one of size of row and one of size of column.
+   - Take two dummy array one of size of row and one of size of column.
    - If(martix[i][j]==0) set dummyrow[i]=0 and dummycol[j]=0
    - Traverse through the matrix again.
    - If(dummyrow[i])
@@ -26,7 +26,7 @@ using namespace std;
 
 void setZeroes(vector<vector<int> > & matrix) {
 	int rows = matrix.size(), cols = matrix[0].size();
-	vector < int > dummy1(rows,-1), dummy2(cols,-1);
+	vector<int> dummy1(rows,-1), dummy2(cols,-1);
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < cols; j++)
 			if (matrix[i][j] == 0) {
