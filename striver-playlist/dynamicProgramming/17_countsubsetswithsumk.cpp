@@ -6,6 +6,12 @@ int f1 (int i, int target, vector<int> &arr){
 	if(target==0) return 1;
 	if(i==0) return (arr[0]==target);
 
+	// FOR COUNTING ZEROS
+	// if(i==0) {
+	// 	if(target==0 and arr[0]==0) return 2;
+	// 	if(target==0 or target==arr[0]) return 1;
+	// }
+
 	int notTaken=f1(i-1,target,arr);
 	int taken=0;
 
