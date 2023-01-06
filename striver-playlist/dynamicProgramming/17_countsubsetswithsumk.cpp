@@ -2,55 +2,55 @@
 using namespace std;
 
 //recursive O(2^n) O(n)
-bool f1 (int i, int target, vector<int> &arr){
-	if(target==0) return true;
+int f1 (int i, int target, vector<int> &arr){
+	if(target==0) return 1;
 	if(i==0) return (arr[0]==target);
 
-	bool notTaken= f1(i-1,target,arr);
-	bool taken=false;
+	int notTaken=f1(i-1,target,arr);
+	int taken=0;
 
 	if(arr[i]<=target)
 		taken = f1(i-1,target-arr[i],arr);
 
-	return taken || notTaken;
+	return taken+notTaken;
 }
 
 
 //memoization O(N*K) O(N*K)+O(N)
-bool f2 (int i, int target, vector<int> &arr,vector<vector<int> > &dp){
-	if(target==0) return dp[i][target]=true;
+int f2 (int i, int target, vector<int> &arr,vector<vector<int> > &dp){
+	if(target==0) return (dp[i][target]=1);
 	if(i==0) return (dp[i][target] = arr[0] == target);
 	if(dp[i][target]!=-1) return dp[i][target];
 
-	bool notTaken= f2(i-1,target,arr,dp);
-	bool taken=false;
+	int notTaken= f2(i-1,target,arr,dp);
+	int taken=0;
 
 	if(arr[i]<=target)
 		taken = f2(i-1,target-arr[i],arr,dp);
 
-	return (dp[i][target]=taken||notTaken);
+	return (dp[i][target]=taken+notTaken);
 }
-bool helper2(int n, int k, vector<int> &arr){
+int helper2(int n, int k, vector<int> &arr){
 	vector<vector<int> > dp(n,vector<int>(k+1,-1));
 	return f2(n-1,k,arr,dp);
 }
 
 
 //tabulation O(N*K) O(N*K)
-bool f3(int n, int k, vector<int> &arr){
-	vector<vector<bool> > dp(n,vector<bool>(k+1,false));
+int f3(int n, int k, vector<int> &arr){
+	vector<vector<int> > dp(n,vector<int>(k+1,0));
 
 	for(int i=0; i<n; i++)
-		dp[i][0] = true;
+		dp[i][0] = 1;
 
 	if(arr[0]<=k)
-		dp[0][arr[0]] = true;
+		dp[0][arr[0]] = 1;
 
 	for(int i = 1; i<n; i++) {
 		for(int target=1; target<=k; target++) {
 
-			bool notTaken = dp[i-1][target];
-			bool taken = false;
+			int notTaken = dp[i-1][target];
+			int taken = 0;
 
 			if(arr[i]<=target)
 				taken = dp[i-1][target-arr[i]];
@@ -63,20 +63,20 @@ bool f3(int n, int k, vector<int> &arr){
 
 
 //space optimization  O(N*K) O(K)
-bool f4(int n, int k, vector<int> &arr){
-	vector<bool> prev(k+1,false);
-	prev[0] = true;
+int f4(int n, int k, vector<int> &arr){
+	vector<int> prev(k+1,0);
+	prev[0] = 1;
 
 	if(arr[0]<=k)
-		prev[arr[0]] = true;
+		prev[arr[0]] = 1;
 
 	for(int ind = 1; ind<n; ind++) {
-		vector<bool> cur(k+1,false);
-		cur[0] = true;
+		vector<int> cur(k+1,0);
+		cur[0] = 1;
 		for(int target= 1; target<=k; target++) {
 
-			bool notTaken = prev[target];
-			bool taken = false;
+			int notTaken = prev[target];
+			int taken = 0;
 
 			if(arr[ind]<=target)
 				taken = prev[target-arr[ind]];
