@@ -22,8 +22,8 @@ bool f1 (int i, int target, vector<int> &arr){
 
 //memoization O(N*K) O(N*K)+O(N)
 bool f2 (int i, int target, vector<int> &arr,vector<vector<int> > &dp){
-	if(target==0) return true;
-	if(i==0) return (arr[0]==target);
+	if(target==0) return (dp[i][target]=true);
+	if(i==0) return (dp[i][target] = arr[0] == target);
 	if(dp[i][target]!=-1) return dp[i][target];
 
 	bool notTaken= f2(i-1,target,arr,dp);

@@ -28,7 +28,7 @@ bool f2 (int i, int target, vector<int> &arr,vector<vector<int> > &dp){
 	if(arr[i]<=target)
 		taken = f2(i-1,target-arr[i],arr,dp);
 
-	return dp[i][target]=taken||notTaken;
+	return (dp[i][target]=taken||notTaken);
 }
 bool helper2(int n, int k, vector<int> &arr){
 	vector<vector<int> > dp(n,vector<int>(k+1,-1));
@@ -62,7 +62,7 @@ bool f3(int n, int k, vector<int> &arr){
 }
 
 
-//space optimization
+//space optimization  O(N*K) O(K)
 bool f4(int n, int k, vector<int> &arr){
 	vector<bool> prev(k+1,false);
 	prev[0] = true;
