@@ -92,8 +92,8 @@ int f4(vector<int>& arr, int T){
 
 			curr[target] = min(notTake, take);
 		}
+		prev=curr;
 	}
-	prev=curr;
 	int ans = prev[T];
 	if(ans >=1e9) return -1;
 	return ans;
