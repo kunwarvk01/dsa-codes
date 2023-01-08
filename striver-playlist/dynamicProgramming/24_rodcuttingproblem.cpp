@@ -57,7 +57,7 @@ int f3(int i, int N, vector<int> &price){
 }
 
 
-//space optimization
+//space optimization O(N*N) O(N)
 int f4(int i, int N, vector<int> &price){
 	vector<int> curr(N+1,-1);
 	for(int n=0; n<=N; n++)
