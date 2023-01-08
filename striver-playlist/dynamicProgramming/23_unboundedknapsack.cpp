@@ -1,29 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// recursive
+// recursive exponential O(W)
 int f1(int i, int W, vector<int> &wt, vector<int> &val){
-	if(i==0) {
-		if(wt[0]<=W)
-			return val[0];
-		return 0;
-	}
+	if(i==0)
+		return (W/wt[0])*val[0];
 	int notTaken = 0+f1(i-1,W,wt,val);
 	int taken = INT_MIN;
 
 	if(wt[i]<=W)
-		taken = val[i]+f1(i-1,W-wt[i],wt,val);
+		taken = val[i]+f1(i,W-wt[i],wt,val);
 	return max(taken,notTaken);
 }
 
 
 //memoization O(N*W)  O(N*W)+O(N)
 int f2(int i, int W, vector<int> &wt, vector<int> &val, vector<vector<int> >&dp){
-	if(i==0) {
-		if(wt[0]<=W)
-			return val[0];
-		return 0;
-	}
+	if(i==0)
+		return (W/wt[0])*val[0];
 
 	if(dp[i][W]!=-1)
 		return dp[i][W];
@@ -32,7 +26,7 @@ int f2(int i, int W, vector<int> &wt, vector<int> &val, vector<vector<int> >&dp)
 	int taken = INT_MIN;
 
 	if(wt[i]<=W)
-		taken = val[i]+f2(i-1,W-wt[i],wt,val,dp);
+		taken = val[i]+f2(i,W-wt[i],wt,val,dp);
 	return dp[i][W]=max(taken,notTaken);
 }
 int helper2(vector<int>& wt, vector<int>& val, int n, int W){
@@ -46,7 +40,7 @@ int f3( int n, int W, vector<int>&wt, vector<int>&val){
 	vector<vector<int> > dp(n,vector<int>(W+1,0));
 	//Base Condition
 	for(int w=wt[0]; w<=W; w++)
-		dp[0][w] = val[0];
+		dp[0][w] = ((int) w/wt[0]) * val[0];
 
 	for(int ind=1; ind<n; ind++) {
 		for(int cap=0; cap<=W; cap++) {
@@ -55,7 +49,7 @@ int f3( int n, int W, vector<int>&wt, vector<int>&val){
 
 			int taken = INT_MIN;
 			if(wt[ind] <= cap)
-				taken = val[ind] + dp[ind-1][cap - wt[ind]];
+				taken = val[ind] + dp[ind][cap - wt[ind]];
 
 			dp[ind][cap] = max(notTaken, taken);
 		}
@@ -70,11 +64,11 @@ int f3( int n, int W, vector<int>&wt, vector<int>&val){
 int f4( int n, int W, vector<int>&wt, vector<int>&val){
 	vector<int> prev(W+1,0);
 	//Base Condition
-	for(int i=wt[0]; i<=W; i++)
-		prev[i] = val[0];
+	for(int w=wt[0]; w<=W; w++)
+		prev[w] = ((int) w/wt[0]) * val[0];
 
 	for(int ind=1; ind<n; ind++) {
-		for(int cap=W; cap>=0; cap--) {
+		for(int cap=0; cap<=0; cap++) {
 
 			int notTaken = 0 + prev[cap];
 

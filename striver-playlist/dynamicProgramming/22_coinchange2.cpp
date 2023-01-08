@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// nfinite supply
+// infinite supply
 
 //recursive
 long f1(int i, int target, vector<int> &arr){
