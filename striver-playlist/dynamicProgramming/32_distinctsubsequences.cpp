@@ -65,17 +65,19 @@ int f4(int n, int m, string s1, string s2){
 
 
 // space optimization O(N*M) O(M)
+// no use for curr here
+// reverse the m loop
 int f5(int n, int m, string s1, string s2){
-	vector<int> prev(m+1,0);
-	prev[0]=1;
+	vector<int> dp(m+1,0);
+	dp[0]=1;
 
 	for(int i=1; i<n+1; i++) {
-		for(int j=1; j<m+1; j++) {
+		for(int j=m; j>=1; j--) {
 			if(s1[i-1]==s2[j-1])
-				prev[j]=prev[j-1] + prev[j];
+				dp[j]=dp[j-1] + dp[j];
 			else
-				prev[j]=prev[j];
+				dp[j]=dp[j];
 		}
 	}
-	return prev[m];
+	return dp[m];
 }
