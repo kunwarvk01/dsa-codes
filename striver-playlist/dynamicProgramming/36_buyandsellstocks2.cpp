@@ -52,17 +52,13 @@ int helper2(vector<int>&arr, int n){
 long f3(vector<int>&arr, int n){
 	vector<vector<long> > dp(n+1,vector<long>(2,-1));
 	dp[n][0] = dp[n][1] = 0;
-
-	long profit;
 	for(int i= n-1; i>=0; i--) {
 		for(int buy=0; buy<=1; buy++) {
 			if(buy==0) // We can buy the stock
-				profit = max(0+dp[i+1][0], -arr[i] + dp[i+1][1]);
+				dp[i][buy] = max(0+dp[i+1][0], -arr[i] + dp[i+1][1]);
 
 			if(buy==1) // We can sell the stock
-				profit = max(0+dp[i+1][1], arr[i] + dp[i+1][0]);
-
-			dp[i][buy]  = profit;
+				dp[i][buy] = max(0+dp[i+1][1], arr[i] + dp[i+1][0]);
 		}
 	}
 	return dp[0][0];
@@ -72,18 +68,15 @@ long f3(vector<int>&arr, int n){
 //space optimization O(N*2) O(1)
 long f4(vector<int>&arr, int n){
 	vector<long> ahead (2,0), curr(2,0);
-	long profit;
 	for(int i= n-1; i>=0; i--) {
 		for(int buy=0; buy<=1; buy++) {
 			if(buy==0) // We can buy the stock
-				profit = max(0+ahead[0], -arr[i] + ahead[1]);
+				curr[buy] = max(0+ahead[0], -arr[i] + ahead[1]);
 
 			if(buy==1) // We can sell the stock
-				profit = max(0+ahead[1], arr[i] + ahead[0]);
-
-			curr[buy]  = profit;
+				curr[buy] = max(0+ahead[1], arr[i] + ahead[0]);
 		}
 		ahead=curr;
 	}
-	return curr[0];
+	return ahead[0];
 }
