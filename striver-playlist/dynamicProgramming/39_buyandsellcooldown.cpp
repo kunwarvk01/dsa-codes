@@ -2,7 +2,6 @@
 using namespace std;
 // cooldown of 1
 // same as dp36. just increase i by 2 when selling
-
 // can buy again
 // recursion
 int f1(int i, int buy, vector<int>&arr){

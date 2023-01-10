@@ -42,7 +42,7 @@ int f2(int i, int buy, int n, vector<int>&arr,int fee, vector<vector<long> >&dp)
 		profit = max(op1,op2);
 
 	}
-	return dp[i][buy] = profit;
+	return dp[i][buy]=profit;
 }
 int helper2(vector<int>&arr,int fee, int n){
 	vector<vector<long> > dp(n,vector<long>(2,-1));
