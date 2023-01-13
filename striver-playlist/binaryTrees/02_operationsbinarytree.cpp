@@ -70,7 +70,7 @@ bool isBalanced(TreeNode* root) {
 
 
 //////////////  DIAMETER OF BINARY TREE  //////////////
-// O(N) O(H)
+// O(N) O(H) //modified hieght function
 int height(TreeNode* node, int &diameter) {
 	if (!node)
 		return 0;
@@ -84,4 +84,39 @@ int diameterOfBinaryTree(TreeNode* root) {
 	int diameter = 0;
 	height(root, diameter);
 	return diameter;
+}
+
+
+
+
+////////////// MAXIMUM PATH SUM  ///////////////////
+//  O(N)  O(N)   // same as diameter
+int maxSum(TreeNode* root, int &maxi) {
+	if (root == NULL)
+		return 0;
+	int l = max(0, maxSum(root->left, maxi));
+	int r = max(0, maxSum(root->right, maxi));
+
+	int val = root->data;
+	maxi = max(maxi, (l+r) + val);
+
+	return max(l,r) + val;
+}
+int maxPathSum(TreeNode* root) {
+	int maxi = INT_MIN;
+	maxSum(root, maxi);
+	return maxi;
+}
+
+
+
+
+////////////// IDENTICAL OR NOT ///////////////////
+// O(N) O(N)
+bool isIdentical(TreeNode * node1, TreeNode * node2) {
+	if (node1==NULL && node2==NULL)
+		return true;
+	else if (node1==NULL || node2==NULL)
+		return false;
+	return ((node1->data == node2->data) && isIdentical(node1->left, node2->left) && isIdentical(node1->right, node2->right));
 }
