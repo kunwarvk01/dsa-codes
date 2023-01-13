@@ -4,7 +4,7 @@ using namespace std;
 // full binary - either 0 or 2
 // complete tree - all level complete except last level (all to left)
 // perfect tree - all leaf nodes are at same level
-// balance tree - height of tree is <= log(n) noOfNodes
+// balance tree - height of tree is <= log(n) noOfNodes  (left-right should not be more than 1)
 // Defenerate tree - evey node has single child
 
 struct Node {
