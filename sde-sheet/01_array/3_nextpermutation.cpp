@@ -23,20 +23,19 @@
 using namespace std;
 
 void nextPermutation(vector<int>& arr) {
-	int n = arr.size(), k, l;
-	for (k = n - 2; k >= 0; k--)
-		if (arr[k] < arr[k + 1])
+	int n = arr.size(), ind1, ind2;
+	for(ind1 = n-2; ind1>=0; ind1--)
+		if (arr[ind1] < arr[ind1+1])
 			break;
-
-	if (k < 0)
+	if(ind1<0)
 		reverse(arr.begin(), arr.end());
-	else {
-		for (l = n - 1; l > k; l--)
-			if (arr[l] > arr[k])
+	else{
+		for(ind2 = n-1; ind2>ind1; ind2--)
+			if (arr[ind2] > arr[ind1])
 				break;
 
-		swap(arr[k], arr[l]);
-		reverse(arr.begin() + k + 1, arr.end());
+		swap(arr[ind1], arr[ind2]);
+		reverse(arr.begin() + ind1 + 1, arr.end());
 	}
 }
 
