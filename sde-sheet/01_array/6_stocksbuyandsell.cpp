@@ -1,10 +1,5 @@
 /*
-   Problem Statement: You are given an array of prices where
-   prices[i] is the price of a given stock on an ith day.
-   You want to maximize your profit by choosing a single day to buy one stock
-   and choosing a different day in the future to sell that stock.
-   Return the maximum profit you can achieve from this transaction.
-   If you cannot achieve any profit, return 0.
+   ccc
 
    <-- Brute Force --> O(n^2) O(1)
    two loops to track every transaction and calculate the maximum profit.
@@ -26,16 +21,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int maxProfit(vector<int> &arr) {
-	int maxPro = 0;
-	int n=arr.size();
-	int minPrice = INT_MAX;
-
-	for(int i = 0; i < n; i++) {
-		minPrice = min(minPrice, arr[i]);
-		maxPro = max(maxPro, arr[i] - minPrice);
+int maxProfit(vector<int>& prices) {
+	int profit = 0, buy = INT_MAX;
+	for(auto i : prices) {
+		buy = min(i, buy);
+		profit = max(profit, i - buy);
 	}
-	return maxPro;
+	return profit;
 }
 
 int main() {
