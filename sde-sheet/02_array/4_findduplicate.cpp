@@ -16,7 +16,7 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-int findDuplicate(vector < int > & nums) {
+int findDuplicate(vector<int> &nums) {
 	int slow = nums[0];
 	int fast = nums[0];
 	do {
