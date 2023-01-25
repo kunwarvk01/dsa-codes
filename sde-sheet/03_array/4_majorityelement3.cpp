@@ -23,10 +23,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector < int > majorityElement(int arr[], int n) {
-	int size = n;
+vector<int> majorityElement(vector<int> arr) {
+	int size = arr.size();
 	int num1 = -1, num2 = -1, count1 = 0, count2 = 0, i;
-	for (i = 0; i < size; i++) {
+	for (i=0; i<size; i++) {
 		if (arr[i] == num1)
 			count1++;
 		else if (arr[i] == num2)
@@ -44,9 +44,9 @@ vector < int > majorityElement(int arr[], int n) {
 			count2--;
 		}
 	}
-	vector < int > ans;
+	vector<int> ans;
 	count1 = count2 = 0;
-	for (i = 0; i < size; i++) {
+	for (i=0; i<size; i++) {
 		if (arr[i] == num1)
 			count1++;
 		else if (arr[i] == num2)
@@ -60,9 +60,9 @@ vector < int > majorityElement(int arr[], int n) {
 }
 
 int main() {
-	int arr[] = {1,2,2,3,2};
+	vector<int> arr = {1,2,2,3,2};
 	vector < int > majority;
-	majority = majorityElement(arr, 5);
+	majority = majorityElement(arr);
 	cout << "The majority element is ";
 
 	for (auto it: majority) {
