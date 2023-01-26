@@ -1,24 +1,32 @@
 /*
+   Problem Statement: Given a Linked List of size N, where every Node represents a sub-linked-list and contains two pointers:
 
+   (i) a next pointer to the next node,
+
+   (ii) a bottom pointer to a linked list where this node is head.
+
+   Each of the sub-linked-list is in sorted order.
+
+   Flatten the Link List such that all the nodes appear in a single level while maintaining the sorted order.
  */
 
 #include <bits/stdc++.h>
 using namespace std;
-struct node {
+struct Node {
 public:
 	int data;
-	node* next;
-	node* bottom;
-	node(int val) {
+	Node* next;
+	Node* bottom;
+	Node(int val) {
 		data = val;
 		next = NULL;
 		bottom = NULL;
 	}
 };
 
-node* mergeTwoLists(node* a, node* b) {
-	node *temp = new node(0);
-	node *res = temp;
+Node* mergeTwoLists(Node* a, Node* b) {
+	Node *temp = new Node(0);
+	Node *res = temp;
 
 	while(a != NULL && b != NULL) {
 		if(a->data < b->data) {
@@ -39,16 +47,13 @@ node* mergeTwoLists(node* a, node* b) {
 	return res->bottom;
 
 }
-node *flatten(node *root){
+Node *flatten(Node *root){
 	if (root == NULL || root->next == NULL)
 		return root;
-
 	// recur for list on right
 	root->next = flatten(root->next);
-
 	// now merge
 	root = mergeTwoLists(root, root->next);
-
 	// return the root
 	// it will be in turn merged with its left
 	return root;

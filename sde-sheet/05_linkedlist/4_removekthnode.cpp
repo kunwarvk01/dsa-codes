@@ -18,17 +18,16 @@ Node* removeNthFromEnd(Node* head, int n) {
 	Node* fast = start;
 	Node* slow = start;
 
-	for(int i = 1; i <= n; ++i)
+	for(int i=1; i<=n; ++i)
 		fast = fast->next;
 
-	while(fast->next != NULL)
-	{
+	while(fast->next != NULL) {
 		fast = fast->next;
 		slow = slow->next;
 	}
-
+	Node* rip = slow->next;
 	slow->next = slow->next->next;
-
+	delete rip;
 	return start->next;
 }
 

@@ -12,18 +12,18 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-struct node {
+struct Node {
 public:
 	int num;
-	node* next;
-	node(int val) {
+	Node* next;
+	Node(int val) {
 		num = val;
 		next = NULL;
 	}
 };
 
-node* detectCycle(node* head) {
-	unordered_set<node*> st;
+Node* detectCycle(Node* head) {
+	unordered_set<Node*> st;
 	while(head != NULL) {
 		if(st.find(head) != st.end())
 			return head;
@@ -36,12 +36,12 @@ node* detectCycle(node* head) {
 // <-- Better Approach --> O(n) O(1)
 // slow and fast Approach
 
-node* detectCyclee(node* head) {
+Node* detectCyclee(Node* head) {
 	if(head == NULL||head->next == NULL) return NULL;
 
-	node* fast = head;
-	node* slow = head;
-	node* entry = head;
+	Node* fast = head;
+	Node* slow = head;
+	Node* entry = head;
 
 	while(fast->next != NULL&&fast->next->next != NULL) {
 		slow = slow->next;

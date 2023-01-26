@@ -27,8 +27,11 @@ struct Node {
 
 
 Node* middleNode(Node* head) {
-	Node *slow = head, *fast = head;
-	while (fast && fast->next)
-		slow = slow->next, fast = fast->next->next;
+	Node* slow = head;
+	Node* fast = head;
+	while (fast && fast->next) {
+		slow = slow->next;
+		fast = fast->next->next;
+	}
 	return slow;
 }

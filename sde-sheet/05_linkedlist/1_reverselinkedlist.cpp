@@ -46,9 +46,8 @@ Node* reverseList(Node* &head) {
 }
 
 
-//  <-- Recurseive --> O(n) O(1)
+//  <-- Recursive --> O(n) O(1)
 Node* reverseListt(Node* &head) {
-
 	if (head == NULL||head->next==NULL)
 		return head;
 

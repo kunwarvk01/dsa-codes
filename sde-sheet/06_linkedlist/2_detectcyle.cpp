@@ -35,15 +35,16 @@ bool cycleDetect(node* head) {
 // <-- Optimal Approach --> O(n) O(1)
 // 2ptr slow fast.
 
-bool cycleDetectt(node* head) {
-	if(head == NULL) return false;
-	node* fast = head;
-	node* slow = head;
+bool hasCycle(node *head) {
+	if(head==NULL) return false;
 
-	while(fast->next != NULL && fast->next->next != NULL) {
-		fast = fast->next->next;
-		slow = slow->next;
-		if(fast == slow) return true;
+	node* slow=head;
+	node* fast=head;
+	while(fast && fast->next) {
+		slow=slow->next;
+		fast=fast->next->next;
+		if(slow==fast)
+			return true;
 	}
 	return false;
 }

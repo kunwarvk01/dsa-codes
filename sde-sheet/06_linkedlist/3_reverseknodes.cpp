@@ -11,17 +11,17 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-struct node {
+struct Node {
 public:
 	int num;
-	node* next;
-	node(int a) {
+	Node* next;
+	Node(int a) {
 		num = a;
 		next = NULL;
 	}
 };
-//utility function to find length of the list
-int lengthOfLinkedList(node* head) {
+
+int lengthOfLinkedList(Node* head) {
 	int length = 0;
 	while(head != NULL) {
 		++length;
@@ -30,29 +30,29 @@ int lengthOfLinkedList(node* head) {
 	return length;
 }
 //utility function to reverse k nodes in the list
-node* reverseKNodes(node* head,int k) {
+Node* reverseKNodes(Node* head, int k) {
 	if(head == NULL||head->next == NULL) return head;
 
 	int length = lengthOfLinkedList(head);
 
-	node* dummyHead = new node(0);
+	Node* dummyHead = new Node(0);
 	dummyHead->next = head;
 
-	node* pre = dummyHead;
-	node* cur;
-	node* nex;
+	Node* prev = dummyHead;
+	Node* curr;
+	Node* next;
 
 	while(length >= k) {
-		cur = pre->next;
-		nex = cur->next;
+		curr = prev->next;
+		next = curr->next;
 		for(int i=1; i<k; i++) {
-			cur->next = nex->next;
-			nex->next = pre->next;
-			pre->next = nex;
-			nex = cur->next;
+			curr->next = next->next;
+			next->next = prev->next;
+			prev->next = next;
+			next = curr->next;
 		}
-		pre = cur;
-		length -= k;
+		prev = curr;
+		length = length - k;
 	}
 	return dummyHead->next;
 }
