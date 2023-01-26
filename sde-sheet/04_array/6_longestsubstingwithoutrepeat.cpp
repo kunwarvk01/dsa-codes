@@ -19,10 +19,10 @@ int solve(string str) {
 	if(str.size()==0)
 		return 0;
 	int maxans = INT_MIN;
-	for (int i = 0; i < (int) str.length(); i++) {// outer loop for traversing the string{
-		unordered_set < int > set;
-		for (int j = i; j < (int)str.length(); j++) {// nested loop for getting different string starting with str[i]
-			if (set.find(str[j]) != set.end()) // if element if found so mark it as ans and break from the loop
+	for(int i=0; i<str.length(); i++) {// outer loop for traversing the string{
+		unordered_set<int> set;
+		for(int j=i; j<str.length(); j++) {// nested loop for getting different string starting with str[i]
+			if(set.find(str[j]) != set.end()) // if element if found so mark it as ans and break from the loop
 			{
 				maxans = max(maxans, j - i);
 				break;
@@ -41,7 +41,7 @@ int solve(string str) {
     every element.      */
 
 int solvee(string s) {
-	vector < int > mpp(256, -1);
+	vector<int> mpp(256, -1);
 
 	int left = 0, right = 0;
 	int n = s.size();
@@ -56,4 +56,17 @@ int solvee(string s) {
 		right++;
 	}
 	return len;
+}
+
+////////
+int lengthOfLongestSubstring(string s) {
+	vector<int> dict(256, -1);
+	int maxLen = 0, start = -1;
+	for (int i = 0; i != s.length(); i++) {
+		if (dict[s[i]] > start)
+			start = dict[s[i]];
+		dict[s[i]] = i;
+		maxLen = max(maxLen, i - start);
+	}
+	return maxLen;
 }

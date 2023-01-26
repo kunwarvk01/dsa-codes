@@ -13,20 +13,20 @@
  #include <bits/stdc++.h>
 using namespace std;
 
-int solve(vector<int> &A, int B) {
+int solve(vector<int> &ARR, int K) {
 	unordered_map<int,int>visited;
 	int cpx = 0;
-	long long c=0;
-	for(int i=0; i<(int)A.size(); i++) {
-		cpx^=A[i];
-		if(cpx==B) c++;
-		int h = cpx^B;
+	long long count = 0;
+	for(int i=0; i<(int)ARR.size(); i++) {
+		cpx^=ARR[i];
+		if(cpx==K) count++;
+		int h = cpx^K;
 		if(visited.find(h)!=visited.end()) {
-			c=c+visited[h];
+			count = count+visited[h];
 		}
 		visited[cpx]++;
 	}
-	return c;
+	return count;
 }
 
 

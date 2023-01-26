@@ -16,15 +16,14 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-int longestConsecutive(vector < int > & arr) {
-	set < int > hashSet;
+int longestConsecutive(vector<int> &arr) {
+	set<int> hashSet;
 	for (int num: arr)
 		hashSet.insert(num);
-
 	int longestStreak = 0;
 
-	for (int num: arr)
-		if (!hashSet.count(num - 1)) {
+	for(int num: arr)
+		if(!hashSet.count(num - 1)) {
 			int currentNum = num;
 			int currentStreak = 1;
 

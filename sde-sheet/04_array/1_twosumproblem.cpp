@@ -13,11 +13,9 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-vector<int> twoSum(vector<int>& nums, int target) {
-
-	vector<int> ans,dummy;
+vector<int> twoSum(vector<int> &nums, int target) {
+	vector<int> ans, dummy;
 	dummy = nums;
-
 	sort(dummy.begin(), dummy.end());
 	int left=0,right=nums.size()-1;
 	int n1,n2;

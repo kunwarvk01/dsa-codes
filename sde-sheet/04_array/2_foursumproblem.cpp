@@ -17,7 +17,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<vector<int> > fourSum(vector<int>& arr, int target) {
+vector<vector<int> > fourSum(vector<int> &arr, int target) {
 	int n = arr.size();
 
 	sort(arr.begin(),arr.end());
@@ -55,20 +55,15 @@ vector<vector<int> > fourSum(vector<int>& arr, int target) {
    - do a two pointer technique for other pointers
    - skip duplicates     */
 
-vector<vector<int> > fourSums(vector<int>& arr, int target) {
+vector<vector<int> > fourSums(vector<int> &arr, int target) {
 	vector<vector<int> > ans;
-
-	if (arr.empty())
-		return ans;
+	if (arr.empty()) return ans;
 	int n = arr.size();
 	sort(arr.begin(),arr.end());
 
-	for (int i = 0; i < n; i++) {
-
+	for (int i=0; i<n; i++) {
 		int target_3 = target - arr[i];
-
-		for (int j = i + 1; j < n; j++) {
-
+		for (int j=i+1; j<n; j++) {
 			int target_2 = target_3 - arr[j];
 
 			int front = j + 1;
@@ -94,10 +89,10 @@ vector<vector<int> > fourSums(vector<int>& arr, int target) {
 				}
 			}
 			// Processing the duplicates of arrber 2
-			while(j + 1 < n && arr[j + 1] == arr[j]) ++j;
+			while(j+1 < n && arr[j+1] == arr[j]) ++j;
 		}
 		// Processing the duplicates of arrber 1
-		while (i + 1 < n && arr[i + 1] == arr[i]) ++i;
+		while (i+1 < n && arr[i+1] == arr[i]) ++i;
 	}
 	return ans;
 }
