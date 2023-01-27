@@ -24,12 +24,12 @@ bool static comp(Item a, Item b) {
 }
 // function to return fractionalweights
 double fractionalKnapsack(int W, Item arr[], int n) {
-	sort(arr, arr + n, comp);
+	sort(arr, arr+n, comp);
 
 	int curWeight = 0;
 	double finalvalue = 0.0;
 
-	for (int i = 0; i < n; i++) {
+	for (int i=0; i<n; i++) {
 		if (curWeight + arr[i].weight <= W) {
 			curWeight += arr[i].weight;
 			finalvalue += arr[i].value;
