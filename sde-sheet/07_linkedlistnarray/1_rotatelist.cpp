@@ -16,31 +16,31 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-struct node {
+struct Node {
 public:
 	int data;
-	node* next;
-	node(int a) {
+	Node* next;
+	Node(int a) {
 		data = a;
 		next = NULL;
 	}
 };
 
-node* rotateRight(node* head,int k) {
+Node* rotateRight(Node* head,int k) {
 	if(head == NULL||head->next == NULL||k == 0) return head;
 	//calculating length
-	node* temp = head;
+	Node* temp = head;
 	int length = 1;
 	while(temp->next != NULL) {
 		++length;
 		temp = temp->next;
 	}
-	//link last node to first node
+	//link last Node to first Node
 	temp->next = head;
 	k = k%length; //when k is more than length of list
 	int end = length-k; //to get end of the list
 	while(end--) temp = temp->next;
-	//breaking last node link and pointing to NULL
+	//breaking last Node link and pointing to NULL
 	head = temp->next;
 	temp->next = NULL;
 
