@@ -16,7 +16,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 vector<vector<int> > threeSum(vector<int>& num) {
-	vector<vector<int> > res;
+	vector<vector<int> > ans;
 	sort(num.begin(), num.end());
 
 	// moves for a
@@ -26,12 +26,7 @@ vector<vector<int> > threeSum(vector<int>& num) {
 
 			while (lo < hi) {
 				if (num[lo] + num[hi] == sum) {
-
-					vector<int> temp;
-					temp.push_back(num[i]);
-					temp.push_back(num[lo]);
-					temp.push_back(num[hi]);
-					res.push_back(temp);
+					ans.push_back({num[i],num[lo],num[hi]});
 
 					while (lo < hi && num[lo] == num[lo+1]) lo++;
 					while (lo < hi && num[hi] == num[hi-1]) hi--;
@@ -43,7 +38,7 @@ vector<vector<int> > threeSum(vector<int>& num) {
 			}
 		}
 	}
-	return res;
+	return ans;
 }
 int main() {
 	vector < int > arr{-1,0,1,2,-1,-4};
