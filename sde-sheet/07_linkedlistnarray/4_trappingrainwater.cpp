@@ -11,18 +11,18 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-int trap(vector < int > & arr) {
+int trap(vector<int> &arr) {
 	int n = arr.size();
 	int waterTrapped = 0;
-	for (int i = 0; i < n; i++) {
+	for(int i=0; i<n; i++) {
 		int j = i;
 		int leftMax = 0, rightMax = 0;
-		while (j >= 0) {
+		while(j >= 0) {
 			leftMax = max(leftMax, arr[j]);
 			j--;
 		}
 		j = i;
-		while (j < n) {
+		while(j < n) {
 			rightMax = max(rightMax, arr[j]);
 			j++;
 		}
@@ -34,19 +34,19 @@ int trap(vector < int > & arr) {
 // <-- Better Approach --> O(3n) O(2n)
 // store leftmax and rightmax of each i in two dummy arrays.
 
-int trapp(vector < int > & arr) {
+int trapp(vector<int> &arr) {
 	int n = arr.size();
 	int prefix[n], suffix[n];
 	prefix[0] = arr[0];
-	for (int i=1; i<n ; i++) {
+	for(int i=1; i<n ; i++) {
 		prefix[i] = max(prefix[i-1], arr[i]);
 	}
 	suffix[n-1] = arr[n-1];
-	for (int i=n-2; i>=0; i--) {
+	for(int i=n-2; i>=0; i--) {
 		suffix[i] = max(suffix[i+1], arr[i]);
 	}
 	int waterTrapped = 0;
-	for (int i=0; i<n; i++) {
+	for(int i=0; i<n; i++) {
 		waterTrapped += min(prefix[i], suffix[i]) - arr[i];
 	}
 	return waterTrapped;
@@ -54,26 +54,26 @@ int trapp(vector < int > & arr) {
 
 // <-- Optimal Approach --> O(n) O(1)
 
-int trappp(vector < int > & height) {
+int trappp(vector<int> &height) {
 	int n = height.size();
 	int left = 0, right = n - 1;
-	int res = 0;
+	int ans = 0;
 	int maxLeft = 0, maxRight = 0;
 	while (left <= right) {
 		if (height[left] <= height[right]) {
 			if (height[left] >= maxLeft)
 				maxLeft = height[left];
 			else
-				res += maxLeft - height[left];
+				ans += maxLeft - height[left];
 			left++;
 		}
 		else {
 			if (height[right] >= maxRight)
 				maxRight = height[right];
 			else
-				res += maxRight - height[right];
+				ans += maxRight - height[right];
 			right--;
 		}
 	}
-	return res;
+	return ans;
 }
