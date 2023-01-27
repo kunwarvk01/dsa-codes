@@ -19,11 +19,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int countPlatforms(int n,int arr[],int dep[])
-{
+int countPlatforms(int arr[],int dep[],int n){
 	int ans=1; //final value
-	for(int i=0; i<n; i++)
-	{
+	for(int i=0; i<n; i++) {
 		int count=1; // count of overlapping interval of only this iteration
 		for(int j=i+1; j<n; j++)
 			if((arr[i]>=arr[j] && arr[i]<=dep[j]) ||
@@ -42,19 +40,16 @@ int countPlatforms(int n,int arr[],int dep[])
     - else count-- j++;
  */
 
-int countPlatformss(int n,int arr[],int dep[])
-{
+int countPlatformss(int arr[],int dep[],int n){
 	sort(arr,arr+n);
 	sort(dep,dep+n);
 
 	int ans=1, count=1, i=1, j=0;
-	while(i<n && j<n)
-	{
-		if(arr[i]<=dep[j]) { //one more platform needed
+	while(i<n && j<n) {
+		if(arr[i] <= dep[j]) { //one more platform needed
 			count++;
 			i++;
-		}
-		else {//one platform can be reduced
+		} else {//one platform can be reduced
 			count--;
 			j++;
 		}
