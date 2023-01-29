@@ -5,7 +5,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void subsetSums(int idx,vector<int> &arr,int n, vector<int>&ans, int sum) {
+void subsetSums(int idx, vector<int> &arr,int n, vector<int>&ans, int sum) {
 	if (idx==n) {
 		ans.push_back(sum);
 		return;
@@ -16,8 +16,8 @@ void subsetSums(int idx,vector<int> &arr,int n, vector<int>&ans, int sum) {
 	subsetSums(idx+1,arr,n,ans,sum);
 }
 
-vector <int> sums(vector <int> arr, int n) {
-	vector <int> ans;
+vector<int> sums(vector<int> arr, int n) {
+	vector<int> ans;
 	subsetSums(0, arr, n, ans, 0);
 	sort(ans.begin(), ans.end());
 	return ans;
