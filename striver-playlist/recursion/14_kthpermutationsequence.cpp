@@ -2,9 +2,7 @@
 using namespace std;
 
 //brute force- all permutations then sort and print k;(n!xn)
-
 //better (n^2)(n)
-
 string getPermutation(int n, int k){
 	int fact=1;
 	vector<int> numbers;
@@ -16,7 +14,7 @@ string getPermutation(int n, int k){
 	string ans="";
 	k=k-1;
 	while(true) {
-		ans=ans + to_string(numbers[k/fact]);
+		ans = ans + to_string(numbers[k/fact]);
 		numbers.erase(numbers.begin() + k/fact);
 		if(numbers.size()==0)
 			break;
