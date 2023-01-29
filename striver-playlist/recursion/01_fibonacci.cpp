@@ -1,17 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int f(int n)
-{
+int fib(int n){
 	if(n<=1)
 		return n;
-	int last=f(n-1);
-	int slast=f(n-2);
-	return last+slast;
+	int last = fib(n-1);
+	int slast = fib(n-2);
+	return last + slast;
 }
 
 int main(){
-	cout<<f(10);
+	cout<<fib(10);
 	return 0;
 }
 
