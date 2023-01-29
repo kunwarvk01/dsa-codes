@@ -12,14 +12,13 @@ void subk(int index, vector<int> &ds, int s,int sum, int arr[],int n){
 		}
 		return;
 	}
-
 	//pick
 	ds.push_back(arr[index]);
-	s=s+arr[index];
+	s = s+arr[index];
 	subk(index+1,ds,s,sum,arr,n);
 
 	//notpick
-	s=s-arr[index];
+	s = s-arr[index];
 	ds.pop_back();
 	subk(index+1,ds,s,sum,arr,n);
 }
