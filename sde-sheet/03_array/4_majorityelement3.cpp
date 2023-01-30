@@ -8,20 +8,38 @@
 
     <-- Better Approach --> O(n) O(n)
     Using freq array / hashmap
-
-    <-- Extended moore's voting algorithm --> O(n) O(1)
-    num1 = most freq element; num2 = 2nd most freq element;
-    c1 = freq of num1; c2=freq of num2;
-    We are sure that there will be a max of 2 elements which occurs > N/3times
-    - if ele == num1, so we increment c1.
-    - if ele == num2, so we increment c2.
-    - if c1 is 0, so we assign num1 = ele.
-    - if c2 is 0, so we assign num2 = ele.
-    - In all the other cases we decrease both c1 and c2.
  */
 
 #include <bits/stdc++.h>
 using namespace std;
+
+vector<int> majorityElemenst(vector<int> arr) {
+	unordered_map<int,int> mp;
+	vector<int> ans;
+	int n = arr.size();
+
+	for(int i=0; i<n; i++)
+		mp[arr[i]]++;
+
+	for (auto x: mp)
+		if (x.second > (n / 3))
+			ans.push_back(x.first);
+
+	return ans;
+}
+
+/*<-- Extended moore's voting algorithm --> O(n) O(1)
+   num1 = most freq element; num2 = 2nd most freq element;
+   c1 = freq of num1; c2=freq of num2;
+   We are sure that there will be a max of 2 elements which occurs > N/3times
+   - if ele == num1, so we increment c1.
+   - if ele == num2, so we increment c2.
+   - if c1 is 0, so we assign num1 = ele.
+   - if c2 is 0, so we assign num2 = ele.
+   - In all the other cases we decrease both c1 and c2.
+ */
+
+
 
 vector<int> majorityElement(vector<int> arr) {
 	int size = arr.size();
