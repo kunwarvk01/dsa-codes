@@ -121,7 +121,6 @@ vector<int> postOrderTrav(Node* root) {
 
 // using 1 stack
 vector<int> postOrderTravs(Node* root) {
-
 	vector<int> postOrder;
 	if (root == NULL) return postOrder;
 
