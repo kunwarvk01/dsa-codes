@@ -12,7 +12,7 @@ struct TreeNode {
 
 
 
-////////// MAX DEPTH OF TREE ///////////////
+////////// MAX DEPTH OF TREE / HEIGHT OF A TREE ///////////////
 
 // iterative takes O(N) O(N) using queue
 int maxDepthBFS(TreeNode *root){
@@ -35,6 +35,8 @@ int maxDepthBFS(TreeNode *root){
 	}
 	return ans;
 }
+
+
 // recursive takes O(N) O(H) height of tree
 int maxDepth(TreeNode* root) {
 	if(root == NULL)
@@ -50,20 +52,16 @@ int maxDepth(TreeNode* root) {
 
 ////////////// CHECK FOR BALANCED TREE ///////////////
 // O(N) O(H)
-int dfsHeight(TreeNode* root) {
-	if (root==NULL) return 0;
+int dfs(TreeNode* node){
+	if(node==NULL) return 0;
+	int l = dfs(node->left);
+	int r = dfs(node->right);
 
-	int lh = dfsHeight(root->left);
-	if(lh == -1) return -1;
-
-	int rh = dfsHeight(root->right);
-	if(rh == -1) return -1;
-
-	if(abs(lh-rh) > 1) return -1;
-	return max (lh,rh) + 1;
+	if(abs(l-r)>1 || l==-1 || r==-1) return -1;
+	return 1+max(l,r);
 }
 bool isBalanced(TreeNode* root) {
-	return dfsHeight (root) != -1;
+	return dfs(root) != -1;
 }
 
 
@@ -72,7 +70,7 @@ bool isBalanced(TreeNode* root) {
 //////////////  DIAMETER OF BINARY TREE  //////////////
 // O(N) O(H) //modified hieght function
 int height(TreeNode* node, int &diameter) {
-	if (!node)
+	if (node==NULL)
 		return 0;
 	int lh = height(node->left, diameter);
 	int rh = height(node->right, diameter);
@@ -98,10 +96,11 @@ int maxSum(TreeNode* root, int &maxi) {
 	int r = max(0, maxSum(root->right, maxi));
 
 	int val = root->data;
-	maxi = max(maxi, (l+r) + val);
+	maxi = max(maxi, l+r+val);
 
 	return max(l,r) + val;
 }
+
 int maxPathSum(TreeNode* root) {
 	int maxi = INT_MIN;
 	maxSum(root, maxi);
