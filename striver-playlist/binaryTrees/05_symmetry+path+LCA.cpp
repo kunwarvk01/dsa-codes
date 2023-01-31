@@ -53,6 +53,7 @@ bool getPath(TreeNode* root, vector<int> &arr, int x) {
 
 
 //////////// LOWEST COMMON ANCESTOR //////////////
+// for brute force, you can store path of both nodes and answer will be the non equal term in both arrays;
 // discard nulls.
 // return only values
 // when left has value and right has value, return root
