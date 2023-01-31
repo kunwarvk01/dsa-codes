@@ -7,65 +7,82 @@ using namespace std;
 // balance tree - height of tree is <= log(n) noOfNodes  (left-right should not be more than 1)
 // Defenerate tree - evey node has single child
 
-struct Node {
-	int data;
-	struct Node* left;
-	struct Node* right;
-	Node(int val){
-		data = val;
+struct TreeNode {
+	int val;
+	struct TreeNode* left;
+	struct TreeNode* right;
+	TreeNode(int val){
+		val = val;
 		left = right = NULL;
 	}
 };
 
 int main(){
-	struct Node*root = new Node(1);
-	root->left = new Node(2);
-	root->right = new Node(3);
-	root->left->right = new Node(4);
+	struct TreeNode*root = new TreeNode(1);
+	root->left = new TreeNode(2);
+	root->right = new TreeNode(3);
+	root->left->right = new TreeNode(4);
 }
 
 // bfs =  level wise
 // dfs = preorder, inorder, postorder
 
-void preorder(Node* node, vector<int>&ans){
+void preorder(TreeNode* node, vector<int>&ans){
 	if(node==NULL)
 		return;
-	ans.push_back(node->data);
+	ans.push_back(node->val);
 	preorder(node->left,ans);
 	preorder(node->right,ans);
 }
 
-void inorder(Node* node, vector<int>&ans){
+void inorder(TreeNode* node, vector<int>&ans){
 	if(node==NULL)
 		return;
 	preorder(node->left,ans);
-	ans.push_back(node->data);
+	ans.push_back(node->val);
 	preorder(node->right,ans);
 }
 
-void postorder(Node* node, vector<int>&ans){
+void postorder(TreeNode* node, vector<int>&ans){
 	if(node==NULL)
 		return;
 	preorder(node->left,ans);
 	preorder(node->right,ans);
-	ans.push_back(node->data);
+	ans.push_back(node->val);
 }
 
-vector<vector<int> > levelOrder(Node* root) {
+vector<int> levelOrderr(TreeNode* root) {
+	vector<int> ans;
+	if(root == NULL)
+		return ans;
+	queue<TreeNode*> q;
+	q.push(root);
+
+	while(!q.empty()) {
+		TreeNode *temp = q.front();
+		q.pop();
+		if(temp->left != NULL) q.push(temp->left);
+		if(temp->right != NULL) q.push(temp->right);
+		ans.push_back(temp->val);
+	}
+	return ans;
+}
+vector<vector<int> > levelOrder(TreeNode* root) {
 	vector<vector<int> > ans;
 	if(root == NULL) return ans;
-	queue<Node*> q;
+	queue<TreeNode*> q;
 	q.push(root);
 
 	while(!q.empty()) {
 		vector<int> level;
-		for(int i=0; i<(int)q.size(); i++) {
-			Node* node = q.front();
+		int size=q.size();
+		for(int i=0; i<size; i++) {
+			TreeNode* node = q.front();
 			q.pop();
 
 			if(node->left != NULL) q.push(node->left);
 			if(node->right != NULL) q.push(node->right);
-			level.push_back(node->data);
+			level.push_back(node->val);
 		}
 		ans.push_back(level);
 	}
@@ -73,18 +90,19 @@ vector<vector<int> > levelOrder(Node* root) {
 }
 
 
+
 //////////// ITERATIVE /////////////
-vector<int> preOrderTrav(Node* root){
+vector<int> preOrderTrav(TreeNode* root){
 	vector<int> preOrder;
 	if (root==NULL)
 		return preOrder;
 
-	stack<Node*> s;
+	stack<TreeNode*> s;
 	s.push(root);
 
 	while (!s.empty()) {
-		Node* topNode = s.top();
-		preOrder.push_back(topNode->data);
+		TreeNode* topNode = s.top();
+		preOrder.push_back(topNode->val);
 		s.pop();
 
 		if(topNode->right != NULL)
@@ -96,12 +114,12 @@ vector<int> preOrderTrav(Node* root){
 }
 
 // using 2 stack
-vector<int> postOrderTrav(Node* root) {
+vector<int> postOrderTrav(TreeNode* root) {
 	vector<int> postOrder;
 	if (root == NULL) return postOrder;
 
-	stack<Node*> s1;
-	stack<Node*> s2;
+	stack<TreeNode*> s1;
+	stack<TreeNode*> s2;
 	s1.push(root);
 	while(!s1.empty()) {
 		root = s1.top();
@@ -113,18 +131,18 @@ vector<int> postOrderTrav(Node* root) {
 			s1.push(root->right);
 	}
 	while(!s2.empty()) {
-		postOrder.push_back(s2.top()->data);
+		postOrder.push_back(s2.top()->val);
 		s2.pop();
 	}
 	return postOrder;
 }
 
 // using 1 stack
-vector<int> postOrderTravs(Node* root) {
+vector<int> postOrderTravs(TreeNode* root) {
 	vector<int> postOrder;
 	if (root == NULL) return postOrder;
 
-	stack<Node*> st;
+	stack<TreeNode*> st;
 	while (root!=NULL || !st.empty()) {
 
 		if(root != NULL) {
@@ -132,15 +150,15 @@ vector<int> postOrderTravs(Node* root) {
 			root = root->left;
 		}
 		else {
-			Node* temp = st.top()->right;
+			TreeNode* temp = st.top()->right;
 			if (temp == NULL) {
 				temp = st.top();
 				st.pop();
-				postOrder.push_back(temp->data);
+				postOrder.push_back(temp->val);
 				while (!st.empty() && temp==st.top()->right) {
 					temp = st.top();
 					st.pop();
-					postOrder.push_back(temp->data);
+					postOrder.push_back(temp->val);
 				}
 			}
 			else root = temp;
@@ -151,8 +169,8 @@ vector<int> postOrderTravs(Node* root) {
 
 
 /////////////// ALL IN ONE /////////////
-void allTraversal(Node* root,vector<int>&pre,vector<int>&in,vector<int>&post) {
-	stack<pair<Node*,int> > st;
+void allTraversal(TreeNode* root,vector<int>&pre,vector<int>&in,vector<int>&post) {
+	stack<pair<TreeNode*,int> > st;
 	st.push({root,1});
 	if (root == NULL) return;
 
@@ -163,7 +181,7 @@ void allTraversal(Node* root,vector<int>&pre,vector<int>&in,vector<int>&post) {
 		// increment 1 to 2
 		// push the left side of the tree
 		if (it.second == 1) {
-			pre.push_back(it.first->data);
+			pre.push_back(it.first->val);
 			it.second++;
 			st.push(it);
 
@@ -174,7 +192,7 @@ void allTraversal(Node* root,vector<int>&pre,vector<int>&in,vector<int>&post) {
 		// increment 2 to 3
 		// push right
 		else if (it.second == 2) {
-			in.push_back(it.first->data);
+			in.push_back(it.first->val);
 			it.second++;
 			st.push(it);
 
@@ -183,6 +201,6 @@ void allTraversal(Node* root,vector<int>&pre,vector<int>&in,vector<int>&post) {
 		}
 		// don't push it back again
 		else
-			post.push_back(it.first->data);
+			post.push_back(it.first->val);
 	}
 }
