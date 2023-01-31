@@ -101,6 +101,7 @@ vector<int> printBoundary(TreeNode* root) {
 // O(N*logn*logn*logn)  O(N)
 vector<vector<int> > findVertical(TreeNode* root) {
 	map<int, map<int, multiset<int> > > nodes;
+	// vertial, level, nodevalue
 	queue<pair<TreeNode*, pair<int,int> > > todo;
 	todo.push({root,{0,0}}); //initial vertical and level
 
@@ -111,7 +112,8 @@ vector<vector<int> > findVertical(TreeNode* root) {
 		//x -> vertical , y->level
 		int x = p.second.first;
 		int y = p.second.second;
-		nodes[x][y].insert(temp->data); //inserting to multiset
+		nodes[x][y].insert(temp->data);
+		//inserting to multiset
 
 		if(temp->left)
 			todo.push({temp->left,{x-1,y+1}});
