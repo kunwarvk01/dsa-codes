@@ -42,7 +42,7 @@ vector<int> topView(TreeNode* root){
 //////////// BOTTOM VIEW //////////
 // same as top view but replacing elements in map
 // O(N) O(N)
-vector <int> bottomView(TreeNode *root) {
+vector<int> bottomView(TreeNode *root) {
 	vector<int> ans;
 	if(root == NULL) return ans;
 	map<int,int> mp;
@@ -58,7 +58,7 @@ vector <int> bottomView(TreeNode *root) {
 		mp[line] = node->data;
 
 		if(node->left != NULL)
-			q.push({node->left, line-1});
+			q.push({node->left, line - 1});
 		if(node->right != NULL)
 			q.push({node->right, line + 1});
 	}
