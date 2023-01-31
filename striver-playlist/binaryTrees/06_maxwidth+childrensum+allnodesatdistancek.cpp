@@ -13,7 +13,8 @@ struct TreeNode {
 
 ////////////////////// MAX WIDTH //////////////////////
 // all nodes as index
-// O(N O(N)
+// left=2i+1, right=2i+2
+// O(N) O(N)
 int widthOfBinaryTree(TreeNode* root) {
 	if(!root) return 0;
 	int ans = 0;
