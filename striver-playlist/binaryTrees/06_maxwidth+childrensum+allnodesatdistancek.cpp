@@ -16,26 +16,25 @@ struct TreeNode {
 // left=2i+1, right=2i+2
 // O(N) O(N)
 int widthOfBinaryTree(TreeNode* root) {
-	if(!root) return 0;
-	int ans = 0;
-	queue<pair<TreeNode*,int> >q;
+	if(root==NULL) return 0;
+	queue<pair<TreeNode*,int> > q;
+	int ans=0;
 	q.push({root,0});
-	while (!q.empty()) {
+	while(!q.empty()) {
 		int size = q.size();
-		int curMin = q.front().second;  // to make the id starting from 0
+		int currMin = q.front().second;
 		int leftMost, rightMost;
-		for (int i=0; i<size; i++) {
-			int cur_id = q.front().second - curMin; // subtracted to prevent integer overflow
-			TreeNode* temp = q.front().first;
+
+		for(int i=0; i<size; i++) {
+			int curr_id = q.front().second-currMin;
+			TreeNode* node=q.front().first;
 			q.pop();
-			if (i == 0) leftMost = cur_id;
-			if (i == size-1) rightMost = cur_id;
-			if (temp->left)
-				q.push({temp->left,(long)cur_id * 2 + 1});
-			if (temp->right)
-				q.push({temp->right,(long)cur_id * 2 + 2});
+			if(i==0) leftMost=curr_id;
+			if(i==size-1) rightMost=curr_id;
+			if(node->left) q.push({node->left,(long)2*curr_id+1});
+			if(node->right) q.push({node->right,(long)2*curr_id+2});
 		}
-		ans = max(ans, rightMost - leftMost + 1);
+		ans=max(ans,rightMost-leftMost+1);
 	}
 	return ans;
 }
@@ -80,45 +79,47 @@ void changeTree(TreeNode * root) {
 vector<int> distanceK(TreeNode* root, TreeNode* target, int K) {
 	unordered_map<TreeNode*, TreeNode*> parent_track;     // node -> parent
 	unordered_map<TreeNode*, bool> visited;
-	queue<TreeNode*> queue;
-	queue.push(root);
-	while(!queue.empty()) {     /*First BFS to get a track of parent nodes*/
-		TreeNode* current = queue.front(); queue.pop();
-		if(current->left) {
-			parent_track[current->left] = current;
-			queue.push(current->left);
+	queue<TreeNode*> q;
+	q.push(root);
+	while(!q.empty()) {     /*First BFS to get a track of parent nodes*/
+		TreeNode* node = q.front();
+		q.pop();
+		if(node->left) {
+			parent_track[node->left] = node;
+			q.push(node->left);
 		}
-		if(current->right) {
-			parent_track[current->right] = current;
-			queue.push(current->right);
+		if(node->right) {
+			parent_track[node->right] = node;
+			q.push(node->right);
 		}
 	}
-	queue.push(target);
+	q.push(target);
 	visited[target] = true;
 	int curr_level = 0;
-	while(!queue.empty()) {     /*Second BFS to go upto K level from target node and using our hashtable info*/
-		int size = queue.size();
+	while(!q.empty()) {     /*Second BFS to go upto K level from target node and using our hashtable info*/
+		int size = q.size();
 		if(curr_level++ == K) break;
 		for(int i=0; i<size; i++) {
-			TreeNode* current = queue.front(); queue.pop();
-			if(current->left && !visited[current->left]) {
-				queue.push(current->left);
-				visited[current->left] = true;
+			TreeNode* node = q.front();
+			q.pop();
+			if(node->left && !visited[node->left]) {
+				q.push(node->left);
+				visited[node->left] = true;
 			}
-			if(current->right && !visited[current->right]) {
-				queue.push(current->right);
-				visited[current->right] = true;
+			if(node->right && !visited[node->right]) {
+				q.push(node->right);
+				visited[node->right] = true;
 			}
-			if(parent_track[current] && !visited[parent_track[current]]) {
-				queue.push(parent_track[current]);
-				visited[parent_track[current]] = true;
+			if(parent_track[node] && !visited[parent_track[node]]) {
+				q.push(parent_track[node]);
+				visited[parent_track[node]] = true;
 			}
 		}
 	}
 	vector<int> result;
-	while(!queue.empty()) {
-		TreeNode* current = queue.front(); queue.pop();
-		result.push_back(current->data);
+	while(!q.empty()) {
+		result.push_back(q.front()->data);
+		q.pop();
 	}
 	return result;
 }
