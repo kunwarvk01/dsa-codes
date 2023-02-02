@@ -39,8 +39,7 @@ bool getPath(TreeNode* root, vector<int> &arr, int x) {
 	// else check whether the required node lies
 	// in the left subtree or right subtree of
 	// the current node
-	if (getPath(root->left, arr, x) ||
-		getPath(root->right, arr, x))
+	if (getPath(root->left, arr, x) || getPath(root->right, arr, x))
 		return true;
 	// required node does not lie either in the
 	// left or right subtree of the current node
