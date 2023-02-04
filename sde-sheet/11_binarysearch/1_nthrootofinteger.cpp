@@ -2,7 +2,6 @@
     Problem Statement: Given two numbers N and M, find the Nth root of M.
     The nth root of a number M is defined as a number X when raised to the
     power N equals M.
-
    <-- Binary Search --> O(nlog(m*10^d)) O(1)
    - low=1, high=m, mid=(low+high)/2.0
    - make a separate function of power(number,n)
@@ -25,7 +24,7 @@ void getNthRoot(int n, int m) {
 
 	while((high - low) > eps) {
 		double mid = (low+high) / 2.0;
-		power(mid,n) < m ? low=mid: high=mid;
+		power(mid,n) < m ? low=mid : high=mid;
 	}
 	cout <<n<<" root of "<<m<<" is "<<low<<endl;
 }
