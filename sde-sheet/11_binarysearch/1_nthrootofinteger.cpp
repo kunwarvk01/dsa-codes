@@ -2,6 +2,7 @@
     Problem Statement: Given two numbers N and M, find the Nth root of M.
     The nth root of a number M is defined as a number X when raised to the
     power N equals M.
+
    <-- Binary Search --> O(nlog(m*10^d)) O(1)
    - low=1, high=m, mid=(low+high)/2.0
    - make a separate function of power(number,n)
