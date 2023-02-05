@@ -35,30 +35,15 @@ int findSingleElement(vector < int > & nums) {
 // return nums[low];
 
 
-int findSingleElementt(vector < int > & nums)
-{
-	int low = 0;
-	int high = nums.size() - 2;
+int singleNonDuplicate(vector<int>& nums) {
+	if(nums.size()==1) return nums[0];
+	int low=0, high=nums.size()-1, mid, num;
 
-	while (low <= high) {
-		int mid = (low + high) / 2;
-
-		if (mid % 2 == 0) {
-			if (nums[mid] != nums[mid + 1])
-				//Checking whether we are in right half
-				high = mid - 1;         //Shrinking the right half
-			else
-				low = mid + 1;         //Shrinking the left half
-		} else {
-
-			//Checking whether we are in right half
-			if (nums[mid] == nums[mid + 1])
-				high = mid - 1;         //Shrinking the right half
-			else
-				low = mid + 1;         //Shrinking the left half
-		}
+	while(low < high) {
+		mid = low+(high-low)/2;
+		num = (mid%2 == 0) ? mid+1 : mid-1;
+		nums[mid]==nums[num]? low = mid+1 : high = mid;
 	}
-
 	return nums[low];
 }
 
