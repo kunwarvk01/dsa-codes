@@ -41,12 +41,9 @@ int kthelement(int array1[],int array2[],int m,int n,int k) {
 // video solution
 
 int kthelementt(int arr1[], int arr2[], int m, int n, int k) {
-	if(m > n) {
+	if(m > n)
 		return kthelement(arr2, arr1, n, m, k);
-	}
-
 	int low = max(0,k-m), high = min(k,n);
-
 	while(low <= high) {
 		int cut1 = (low + high) >> 1;
 		int cut2 = k - cut1;
