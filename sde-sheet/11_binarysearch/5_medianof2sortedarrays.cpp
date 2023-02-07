@@ -9,7 +9,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-double median(int nums1[],int nums2[],int m,int n) {
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+	int m=nums1.size(); int n=nums2.size();
 	int finalArray[n+m];
 	int i=0,j=0,k=0;
 	while(i<m && j<n) {
@@ -32,13 +33,15 @@ double median(int nums1[],int nums2[],int m,int n) {
 	else return ((double)finalArray[(n/2)-1]+(double)finalArray[(n/2)])/2;
 }
 
-// <-- Optimal Naive Approach --> O(m+n) O(1)
-// Use a pointer to store the postion of median
-// update position while checking the other array.
+/*
 
-// <-- Efficient Approach --> O(log(min(m,n))) O(n)
-// video solution
+   <-- Optimal Naive Approach --> O(m+n) O(1)
+   Use a pointer to store the postion of median
+   update position while checking the other array.
 
+   <-- Efficient Approach --> O(log(min(m,n))) O(n)
+   video solution
+ */
 double mediann(int num1[],int num2[],int m,int n) {
 	if(m>n)
 		return mediann(num2,num1,n,m); //ensuring that binary search happens on minimum size array
@@ -66,11 +69,9 @@ double mediann(int num1[],int num2[],int m,int n) {
 }
 
 int main() {
-	int nums1[] = {1,4,7,10,12};
-	int nums2[] = {2,3,6,15};
+	vector<int> nums1 = {1,4,7,10,12};
+	vector<int> nums2 = {2,3,6,15};
 	int m = sizeof(nums1)/sizeof(nums1[0]);
 	int n = sizeof(nums2)/sizeof(nums2[0]);
-	cout<<"The Median of two sorted arrays is"<<fixed<<setprecision(5)
-		<<median(nums1,nums2,m,n);
 	return 0;
 }
