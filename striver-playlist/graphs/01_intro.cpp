@@ -13,7 +13,7 @@ int main(){
 
 	//adjacency list (2e)
 	// for weighted graphs vector<pair<int,int>> adj
-	vector<int> adjl[m+1];
+	vector<vector<int> > adjl;
 	for(int i=0; i<m; i++) {
 		int u,v;
 		cin>>u>>v;
