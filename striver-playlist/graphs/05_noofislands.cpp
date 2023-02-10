@@ -47,44 +47,40 @@ int numIslands(vector<vector<char> > &grid){
 
 
 
-
-
-
-
-// works on leetcode
-class Solution {
-/*
-    Time Complexity : O(m*n)
-    Space Complexity : O(1)
- */
-
-private:
-vector<int> x = {+1, -1, 0, 0};
-vector<int> y = {0, 0, +1, -1};
-
-void helper(vector<vector<char> > &grid, int i, int j){
-	if(i>=0 && i<grid.size() && j>=0 && j<grid[0].size() && grid[i][j] == '1') {
-		grid[i][j] = '2';
-
-		for(int k=0; k<4; k++) {
-			int newR = i+x[k];
-			int newC = j+y[k];
-			helper(grid, newR, newC);
-		}
-	}
-}
-public:
-int numIslandss(vector<vector<char> >& grid) {
-	int ans = 0;
-	for(int i=0; i<grid.size(); i++) {
-		for(int j=0; j<grid[0].size(); j++) {
-			if(grid[i][j] == '1') {
-				ans++;
-				helper(grid, i, j);
-			}
-		}
-	}
-
-	return ans;
-}
-};
+// // works on leetcode
+// class Solution {
+// /*
+//     Time Complexity : O(m*n)
+//     Space Complexity : O(1)
+//  */
+//
+// private:
+// vector<int> x = {+1, -1, 0, 0};
+// vector<int> y = {0, 0, +1, -1};
+//
+// void helper(vector<vector<char> > &grid, int i, int j){
+// 	if(i>=0 && i<grid.size() && j>=0 && j<grid[0].size() && grid[i][j] == '1') {
+// 		grid[i][j] = '2';
+//
+// 		for(int k=0; k<4; k++) {
+// 			int newR = i+x[k];
+// 			int newC = j+y[k];
+// 			helper(grid, newR, newC);
+// 		}
+// 	}
+// }
+// public:
+// int numIslandss(vector<vector<char> >& grid) {
+// 	int ans = 0;
+// 	for(int i=0; i<grid.size(); i++) {
+// 		for(int j=0; j<grid[0].size(); j++) {
+// 			if(grid[i][j] == '1') {
+// 				ans++;
+// 				helper(grid, i, j);
+// 			}
+// 		}
+// 	}
+//
+// 	return ans;
+// }
+// };
