@@ -2,7 +2,7 @@
 using namespace std;
 
 //(n+2e)
-void solve(int node,vector<int> adj[], int vis[], vector<int> &dfs){
+void solve(int node, vector<vector<int> >adj, vector<int>&vis, vector<int>&dfs){
 	vis[node] = 1;
 	dfs.push_back(node);
 	//traverse all its neighbours
@@ -12,8 +12,8 @@ void solve(int node,vector<int> adj[], int vis[], vector<int> &dfs){
 	}
 }
 
-vector<int> dfsgraph(int v, vector<int> adj[]){
-	int vis[v]={0};
+vector<int> dfsgraph(int v, vector<vector<int> > adj){
+	vector<int> vis(v,0);
 	int start=0;
 	vector<int> dfs;
 	solve(start,adj,vis,dfs);
