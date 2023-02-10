@@ -15,7 +15,7 @@ bool detect(int src, vector<int> adj[],int vis[]){
 		for(auto adjacentnode: adj[node]) {
 			if(!vis[adjacentnode]) {
 				vis[adjacentnode]=1;
-				q.push({adjacentnode,parent});
+				q.push({adjacentnode,node});
 			}
 			else if(parent!=adjacentnode)
 				return true;
@@ -24,9 +24,10 @@ bool detect(int src, vector<int> adj[],int vis[]){
 	return false;
 }
 
-bool isCycle(int V, vector<int> adj[]){
-	int vis[V]={0};
-	for(int i=0; i<V; i++)
+
+bool isCycle(int v, vector<int> adj[]){
+	int vis[v]={0};
+	for(int i=0; i<v; i++)
 		if(!vis[i])
 			if(detect(i,adj,vis))
 				return true;
