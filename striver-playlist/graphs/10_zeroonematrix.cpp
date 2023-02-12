@@ -1,17 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//(n*m)
-//(n*m)
+//(m*n)
+//(m*n)
 vector<vector<int> > nearest(vector<vector<int> > grid){
-	int n = grid.size();
-	int m=grid[0].size();
-	vector<vector<int> > vis(n,vector<int>(m,0));
-	vector<vector<int> > dist(n,vector<int>(m,0));
+	int m = grid.size();
+	int n = grid[0].size();
+	vector<vector<int> > vis(m,vector<int>(n,0));
+	vector<vector<int> > dist(m,vector<int>(n,0));
 	queue<pair<pair<int,int>,int> > q;
-	for(int i=0; i<n; i++) {
-		for(int j=0; j<m; j++) {
-			if(grid[i][j]==1) {
+	for(int i=0; i<m; i++) {
+		for(int j=0; j<n; j++) {
+			if(grid[i][j]==0) {
 				q.push({{i,j},0});
 				vis[i][j] = 1;
 			}
@@ -33,7 +33,7 @@ vector<vector<int> > nearest(vector<vector<int> > grid){
 		for(int i=0; i<4; i++) {
 			int nrow=row+delrow[i];
 			int ncol=col+delcol[i];
-			if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && vis[nrow][ncol]==0) {
+			if(nrow>=0 && nrow<m && ncol>=0 && ncol<n && vis[nrow][ncol]==0) {
 				vis[nrow][ncol]=1;
 				q.push({{nrow,ncol},steps+1});
 			}
