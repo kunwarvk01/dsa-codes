@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool dfs(int node, int col, int color[], vector<int> adj[]){
+bool check(int node, int col, int v, vector<vector<int> >&graph, vector<int> &color){
 	color[node]=col;
-	for(auto it: adj[node]) {
-		if(color[it]==-1) {
-			if(dfs(it,!col,color,adj)==false)
+	for(auto it: graph[node]) {
+		if(!color[it]) {
+			if(check(it,-col,v,graph,color)==false)
 				return false;
 		}
 		else if(color[it]==col)
@@ -13,14 +13,12 @@ bool dfs(int node, int col, int color[], vector<int> adj[]){
 	}
 	return true;
 }
-
-bool isBipartite(int V, vector<int> adj[]){
-	int color[V]={-1};
-	for(int i=0; i<V; i++) {
-		if(color[i]==-1)
-			if(dfs(i,0,color,adj)==false)
+bool isBipartite(vector<vector<int> >&graph){
+	int v=graph.size();
+	vector<int> color(v,0);
+	for(int i=0; i<v; i++)
+		if(!color[i])
+			if(check(i,1,v,graph,color)==false)
 				return false;
-	}
-
 	return true;
 }
