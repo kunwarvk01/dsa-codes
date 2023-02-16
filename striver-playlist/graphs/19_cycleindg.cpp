@@ -30,3 +30,28 @@ bool isCyclic(int V, vector<int> adj[]){
 	if(cnt==V) return false;
 	return true;
 }
+
+
+bool recur(int node, bool *visited, bool *inStack, vector<int> adj[]){
+	if(inStack[node]) return true;
+	if(visited[node]) return false;
+	visited[node] = true;
+	inStack[node] = true;
+	for(int v : adj[node])
+		if(recur(v, visited, inStack, adj))
+			return true;
+	inStack[node] = false;
+	return false;
+}
+bool isCycle(int V, vector<int> adj[]){
+	bool visited[V];
+	bool inStack[V];
+	for(int i = 0; i < V; i++) {
+		visited[i] = false;
+		inStack[i] = false;
+	}
+	for(int i=0; i<V; i++)
+		if(recur(i, visited, inStack, adj))
+			return true;
+	return false;
+}

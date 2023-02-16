@@ -5,13 +5,12 @@ using namespace std;
 // get all the nodes with indegree 0
 // do a removal of edges on adjacent nodes
 
-vector<int> eventualSafeNodes(int V, vector<int> adj[]){
+vector<int> eventualSafeNodes(vector<vector<int> >&graph){
+	int V=graph.size();
 	vector<int> adjrev[V];
-	int indegree[V] = {0};
+	vector<int> indegree(V,0);
 	for(int i=0; i<V; i++) {
-		for(auto it: adj[i]) {
-			// i->it
-			// it->i
+		for(auto it: graph[i]) {
 			adjrev[it].push_back(i);
 			indegree[i]++;
 		}

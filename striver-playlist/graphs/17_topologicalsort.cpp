@@ -8,7 +8,7 @@ using namespace std;
 // BFS
 vector<int> topo(int N, vector<int> adj[]) {
 	queue<int> q;
-	vector<int> indegree(N, 0);
+	int indegree[N]={0};
 	for(int i = 0; i<N; i++)
 		for(auto it: adj[i])
 			indegree[it]++;
@@ -33,12 +33,11 @@ vector<int> topo(int N, vector<int> adj[]) {
 
 
 // DFS
-void dfs(int node, int vis[], vector<int>&ans, vector<int> adj[]){
+void dfs(int node, int vis[], vector<int> ans, vector<int> adj[]){
 	vis[node]=1;
 	for(auto it: adj[node])
 		if(!vis[it])
 			dfs(it, vis, ans, adj);
-
 	ans.push_back(node);
 }
 vector<int> topoSort(int V, vector<int> adj[]){
@@ -47,7 +46,6 @@ vector<int> topoSort(int V, vector<int> adj[]){
 	for(int i=0; i<V; i++)
 		if(!vis[i])
 			dfs(i,vis,ans,adj);
-
 	reverse(ans.begin(),ans.end());
 	return ans;
 }
