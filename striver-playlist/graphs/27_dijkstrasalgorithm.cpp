@@ -5,7 +5,7 @@ using namespace std;
 // will not work in negetive cycle / negetive weight
 // as it fill fall in infinite loop
 
-// tc= elogV
+// tc = elogV
 vector<int> dijkstra(int V, vector<vector<int> > adj[], int S){
 	priority_queue<pair<int, int>,vector<pair<int, int> >,greater<pair<int, int> > > pq;
 	vector<int> dist(V,1e9);
